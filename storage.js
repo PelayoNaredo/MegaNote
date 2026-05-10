@@ -1,5 +1,5 @@
 /**
- * MegaNote - storage.js
+ * MegaNote - storage.js test
  * Módulo de persistencia para la aplicación de notas.
  * Maneja la comunicación con localStorage y la serialización de datos.
  */
@@ -17,7 +17,7 @@ const StorageModule = (function () {
         try {
             const rawData = localStorage.getItem(STORAGE_KEY);
             if (!rawData) return [];
-            
+
             const parsedData = JSON.parse(rawData);
             return Array.isArray(parsedData) ? parsedData : [];
         } catch (error) {
@@ -57,7 +57,7 @@ const StorageModule = (function () {
     function updateNote(id, changes) {
         const notes = getNotes();
         const index = notes.findIndex(n => n.id === id);
-        
+
         if (index !== -1) {
             notes[index] = { ...notes[index], ...changes, updatedAt: new Date().toISOString() };
             saveNotes(notes);
